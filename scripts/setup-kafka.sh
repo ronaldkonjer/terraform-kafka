@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#
+set -ex
 # Script to setup a Kafka server
 
 # unload the command line
@@ -18,7 +18,7 @@ mkdir -p /var/log/kafka
 # download kafka
 base_name=kafka_${scala_version}-${version}
 cd /tmp
-curl -O ${repo}/${version}/$base_name.tgz
+curl -L ${repo}/${version}/$base_name.tgz -o $base_name.tgz
 
 # unpack the tarball
 cd /opt/kafka
@@ -29,6 +29,7 @@ cd $base_name
 # configure the server
 cat config/server.properties \
     | sed "s|broker.id=0|broker.id=$broker_id|" \
+   # | sed 's|advertised.listeners=PLAINTEXT://:9092|advertised.listeners=PLAINTEXT://ec2-18-132-90-74.eu-west-2.compute.amazonaws.com:9092|' \
     | sed 's|log.dirs=/tmp/kafka-logs|log.dirs=${mount_point}/kafka-logs|' \
     | sed 's|num.partitions=1|num.partitions=${num_partitions}|' \
     | sed 's|log.retention.hours=168|log.retention.hours=${log_retention}|' \
@@ -40,4 +41,5 @@ echo "broker.rack=$az" >> /tmp/server.properties
 echo " " >> /tmp/server.properties
 echo "# replication factor" >> /tmp/server.properties
 echo "default.replication.factor=${repl_factor}" >> /tmp/server.properties
+echo "delete.topic.enable = true" >> /tmp/server.properties
 mv /tmp/server.properties config/server.properties

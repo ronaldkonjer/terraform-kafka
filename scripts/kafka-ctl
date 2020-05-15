@@ -12,6 +12,8 @@ KAFKA_CONSOLE_LOG=$KAFKA_HOME/logs/kafkaServer.out
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin
 
+export PATH="$PATH:$KAFKA_HOME/bin"
+
 prog=kafka
 DESC="kafka daemon"
 

@@ -3,7 +3,7 @@
  */
 
 variable "environment" {
-  type = "string"
+  type = string
   description = "environment to configure"
 }
 
@@ -18,58 +18,58 @@ variable "brokers_per_az" {
 }
 
 variable "zookeeper_addr" {
-  type = "string"
+  type = string
   description = "network number for zookeeper IPs"
 }
 
 variable "zookeeper_ami" {
-  type = "string"
+  type = string
   description = "AWS AMI for zookeeper"
 }
 
 variable "zookeeper_user" {
-  type = "string"
+  type = string
   description = "user in zookeeper AMI"
 }
 
 variable "zookeeper_instance_type" {
-  type = "string"
+  type = string
   description = "instance type for zookeeper server"
 }
 
 variable "zookeeper_version" {
   description = "Zookeeper version"
-  default = "3.4.10"
+  default = "3.6.1"
 }
 
 variable "zookeeper_repo" {
   description = "Zookeeper distro site"
-  default = "http://apache.org/dist/zookeeper"
+  default = "https://downloads.apache.org/zookeeper"
 }
 
 variable "kafka_ami" {
-  type = "string"
+  type = string
   description = "AWS AMI for kafka"
 }
 
 variable "kafka_user" {
-  type = "string"
+  type = string
   description = "user in kafka AMI"
 }
 
 variable "kafka_instance_type" {
-  type = "string"
+  type = string
   description = "instance type for kafka server"
 }
 
 variable "kafka_version" {
   description = "Kafka version"
-  default = "0.11.0.0"
+  default = "2.5.0"
 }
 
 variable "scala_version" {
   description = "Scala version used in Kafka package"
-  default = "2.12"
+  default = "2.13"
 }
 
 variable "kafka_repo" {
@@ -88,7 +88,7 @@ variable "ebs_device_name" {
 }
 
 variable "ebs_volume_ids" {
-  type = "list"
+  type = list(string)
   description = "list of EBS volume IDs"
 }
 
@@ -103,51 +103,51 @@ variable "log_retention" {
 }
 
 variable "subnet_ids" {
-  type = "list"
+  type = list(string)
   description = "list of subnet IDs"
 }
 
 variable "static_subnet_ids" {
-  type = "list"
+  type = list(string)
   description = "list of subnet IDs for static IPs (/24 CIDR)"
 }
 
 variable "security_group_ids" {
-  type = "list"
+  type = list(string)
   description = "list of security group IDs"
 }
 
 variable "iam_instance_profile" {
-  type = "string"
+  type = string
   description = "IAM instance profile"
 }
 
 variable "key_name" {
-  type = "string"
+  type = string
   description = "key pair for SSH access"
 }
 
 variable "private_key" {
-  type = "string"
+  type = string
   description = "local path to ssh private key"
 }
 
 variable "bastion_ip" {
-  type = "string"
+  type = string
   description = "bastion IP address for ssh access"
 }
 
 variable "bastion_user" {
-  type = "string"
+  type = string
   description = "user on bastion server"
 }
 
 variable "bastion_private_key" {
-  type = "string"
+  type = string
   description = "local path to ssh private key for bastion access"
 }
 
 variable "cloudwatch_alarm_arn" {
-  type = "string"
+  type = string
   description = "cloudwatch alarm ARN"
 }

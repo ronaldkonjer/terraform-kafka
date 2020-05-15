@@ -1,5 +1,7 @@
 #!/bin/bash
+set -ex
 # Script to start a zookeeper Docker container
+#exec > >(tee /var/log/user-data.log|logger -t setup-zookeeper -s 2>/dev/console) 2>&1
 
 # unload command line
 id=$1
@@ -7,21 +9,31 @@ id=$1
 # create an array of IPs
 ip_addrs=( ${ip_addrs} )
 
+
+# update java
+sudo yum remove -y java-1.7.0-openjdk
+sudo yum install -y java-1.8.0
+
 # create zookeeper user
 mkdir -p /opt/zookeeper
 if ! id zookeeper 2> /dev/null; then
     useradd -d /opt/zookeeper zookeeper
 fi
 
+touch /zookeeper_server.pid
+chown -R zookeeper:zookeeper /zookeeper_server.pid
+
 # download zookeeper
-base_name=zookeeper-${version}
+version_name=zookeeper-${version}
+base_name=apache-$version_name-bin
 cd /tmp
-curl -O ${repo}/$base_name/$base_name.tar.gz
+curl -o $base_name.tar.gz ${repo}/$version_name/$base_name.tar.gz
 
 # unpack the tarball
 cd /opt/zookeeper
 tar xzf /tmp/$base_name.tar.gz
-rm /tmp/$base_name.tar.gz
+pwd
+#rm /tmp/$base_name.tar.gz
 cd $base_name
 
 # create a data dir

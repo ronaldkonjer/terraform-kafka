@@ -17,7 +17,7 @@
 ### END INIT INFO
 
 # Where you extracted the Solr distribution bundle
-ZK_INSTALL_DIR="/opt/zookeeper/zookeeper-${version}"
+ZK_INSTALL_DIR="/opt/zookeeper/apache-zookeeper-${version}-bin"
 
 if [ ! -d "$ZK_INSTALL_DIR" ]; then
   echo "$ZK_INSTALL_DIR not found! Please check the ZK_INSTALL_DIR setting in your $0 script."

@@ -36,7 +36,7 @@ Name | Description | Default
 `zookeeper_instance_type` | instance type for zookeeper server | |
 `zookeeper_repo` | Zookeeper distro site | http://apache.org/dist/zookeeper |
 `zookeeper_user` | user in zookeeper AMI | |
-`zookeeper_version` | Zookeeper version | 3.4.10 |
+`zookeeper_version` | Zookeeper version | 3.6.1 |
 
 ## Outputs
 
